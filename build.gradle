@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.testing.calories'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 10
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    // spring
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-data-rest')
+    implementation('org.springframework.boot:spring-boot-starter-integration')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('com.h2database:h2')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    // spock
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+    testRuntime('cglib:cglib-nodep:3.2.4')
+}
