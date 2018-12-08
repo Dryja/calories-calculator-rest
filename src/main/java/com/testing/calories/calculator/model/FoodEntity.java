@@ -4,11 +4,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-@Data
-@EqualsAndHashCode
 @Builder
+@Data
+@EqualsAndHashCode(exclude = {"userFoodHistory"})
+@Entity
 public class FoodEntity {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private String name;
+
+  private Long calories;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "food")
+  private Set<UserFoodHistoryEntity> userFoodHistory;
+
+  public void addUserFoodHistoryEntity(UserFoodHistoryEntity entity) {
+    entity.setFood(this);
+    if (this.userFoodHistory == null) {
+      this.userFoodHistory = new HashSet<>();
+    }
+    this.userFoodHistory.add(entity);
+  }
 }
