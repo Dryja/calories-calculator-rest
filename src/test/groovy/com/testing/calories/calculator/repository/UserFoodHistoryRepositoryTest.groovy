@@ -31,8 +31,9 @@ class UserFoodHistoryRepositoryTest extends Specification {
         def userEntity = UserEntity.builder().email(email).goal(goal).build()
         def foodEntity = FoodEntity.builder().name(name).calories(calories).build()
 
-        userEntity.addUserFoodHistoryEntity(userFoodHistoryEntity)
-        foodEntity.addUserFoodHistoryEntity(userFoodHistoryEntity)
+        def userFoodHistory = userFoodHistoryRepository.save(userFoodHistoryEntity)
+        userEntity.addUserFoodHistoryEntity(userFoodHistory)
+        foodEntity.addUserFoodHistoryEntity(userFoodHistory)
 
         def user = userRepository.save(userEntity)
         foodRepository.save(foodEntity)

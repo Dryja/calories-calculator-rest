@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FoodRepository extends CrudRepository<FoodEntity, Long> {
+  FoodEntity findFoodEntityByName(String name);
 }
