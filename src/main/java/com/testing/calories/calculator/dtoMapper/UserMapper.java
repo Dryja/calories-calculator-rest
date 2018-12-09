@@ -16,8 +16,8 @@ public class UserMapper {
     return UserDTO.builder().email(entity.getEmail()).goal(entity.getGoal()).userFoodHistoryList(userHistoryFoodList).build();
   }
 
-  // todo: add this mapper and test in UserMapperTest
-//  static public UserEntity toEntity(UserDTO dto) {
-//
-//  }
+  static public UserEntity toEntity(UserDTO dto) {
+    return UserEntity.builder().email(dto.getEmail()).goal(dto.getGoal()).build();
+
+  }
 }

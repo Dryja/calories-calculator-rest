@@ -13,8 +13,7 @@ public class UserFoodHistoryMapper {
       .build();
   }
 
-  // todo: add this mapper and test in UserFoodHistoryMapperTest
-//  static public UserFoodHistoryEntity toEntity(UserFoodHistoryDto dto) {
-//
-//  }
+  static public UserFoodHistoryEntity toEntity(UserFoodHistoryDTO dto) {
+    return UserFoodHistoryEntity.builder().dateOfConsumption(dto.getDateOfConsumption()).build();
+  }
 }

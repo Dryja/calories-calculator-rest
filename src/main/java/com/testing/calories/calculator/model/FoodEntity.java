@@ -1,13 +1,13 @@
 package com.testing.calories.calculator.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
 @EqualsAndHashCode(exclude = {"userFoodHistory"})

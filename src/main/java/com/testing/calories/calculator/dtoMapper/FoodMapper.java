@@ -20,8 +20,7 @@ public class FoodMapper {
       .build();
   }
 
-  // todo: add this mapper and test in FoodMapperTest
-//  static public FoodEntity toEntity(FoodDTO dto) {
-//
-//  }
+  static public FoodEntity toEntity(FoodDTO dto) {
+    return FoodEntity.builder().name(dto.getName()).calories(dto.getCalories()).build();
+  }
 }

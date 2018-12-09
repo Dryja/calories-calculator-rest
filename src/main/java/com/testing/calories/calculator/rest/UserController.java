@@ -1,48 +1,60 @@
 package com.testing.calories.calculator.rest;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.testing.calories.calculator.dto.UserDTO;
+import com.testing.calories.calculator.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "/User")
+@RequestMapping(path = "/user")
 public class UserController {
 
-//  @Autowired
-//  private UserService userService;
-//
-//  @GetMapping(path = "/{id}")
+  private UserService userService;
+
+  @Autowired
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
+
+  @GetMapping(path = "/{email}")
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<UserDTO> getUser(@PathVariable("email") String email) {
+    var result = userService.getUser(email);
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<List<UserDTO>> getUserList() {
+    var result = userService.getUserList();
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) {
+    var result = userService.addUser(userDTO);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
+  }
+
+  @DeleteMapping(path = "/{email}", produces = APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<UserDTO> removeUser(@PathVariable("email") String email) {
+    var result = userService.removeUser(email);
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+//  @PutMapping(path = "/{email}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 //  @ResponseStatus(HttpStatus.OK)
-//  public ResponseEntity<UserDTO> getUser(@PathVariable("id") Long id) {
-//    var result = new UserDTO();
-//    return new ResponseEntity<>(result, HttpStatus.OK);
-//  }
-//
-//  @GetMapping
-//  @ResponseStatus(HttpStatus.OK)
-//  public ResponseEntity<List<UserDTO>> getUserList() {
-//    var result = new ArrayList<UserDTO>();
-//    return new ResponseEntity<>(result, HttpStatus.OK);
-//  }
-//
-//  @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//  @ResponseStatus(HttpStatus.CREATED)
-//  public ResponseEntity<UserDTO> addUser() {
-//    var result = new UserDTO();
-//    return new ResponseEntity<>(result, HttpStatus.CREATED);
-//  }
-//
-//  @DeleteMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
-//  @ResponseStatus(HttpStatus.OK)
-//  public ResponseEntity<UserDTO> removeUser(@PathVariable("id") Long id) {
-//    var result = new UserDTO();
-//    return new ResponseEntity<>(result, HttpStatus.OK);
-//  }
-//
-//  @PutMapping(path = "/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//  @ResponseStatus(HttpStatus.OK)
-//  public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Long id) {
-//    var result = new UserDTO();
+//  public ResponseEntity<UserDTO> updateUser(@PathVariable("email") String email) {
+//    var result =
 //    return new ResponseEntity<>(result, HttpStatus.OK);
 //  }
 }
