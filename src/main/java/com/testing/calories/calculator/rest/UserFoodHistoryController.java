@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -23,7 +25,7 @@ public class UserFoodHistoryController {
 
   @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<UserFoodHistoryDTO> addFoodHistory(@RequestBody UserFoodHistoryRequest userFoodHistoryRequest) {
+  public ResponseEntity<UserFoodHistoryDTO> addFoodHistory(@RequestBody @Valid UserFoodHistoryRequest userFoodHistoryRequest) {
     var result = userFoodHistoryService.addFoodHistory(
       userFoodHistoryRequest.getEmail(),
       userFoodHistoryRequest.getFoodName(),
@@ -33,7 +35,7 @@ public class UserFoodHistoryController {
 
   @DeleteMapping(produces = APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<UserFoodHistoryDTO> removeFoodHistory(@RequestBody UserFoodHistoryRequest userFoodHistoryRequest) {
+  public ResponseEntity<UserFoodHistoryDTO> removeFoodHistory(@RequestBody @Valid UserFoodHistoryRequest userFoodHistoryRequest) {
     var result = userFoodHistoryService.removeFoodHistory(
       userFoodHistoryRequest.getEmail(),
       userFoodHistoryRequest.getFoodName(),

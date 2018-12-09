@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -39,7 +40,7 @@ public class FoodController {
 
   @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<FoodDTO> addFood(@RequestBody FoodDTO foodDTO) {
+  public ResponseEntity<FoodDTO> addFood(@RequestBody @Valid FoodDTO foodDTO) {
     var result = foodService.addFood(foodDTO);
     return new ResponseEntity<>(result, HttpStatus.CREATED);
   }

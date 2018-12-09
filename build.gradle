@@ -29,6 +29,8 @@ repositories {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
 
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.13.Final'
+
     // spring
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-data-rest')
