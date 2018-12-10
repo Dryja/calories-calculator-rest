@@ -52,6 +52,13 @@ public class UserController {
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
+  @GetMapping(path = "/{email}/energy_requirements")
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<Integer> getEnergyRequirements(@PathVariable("email") String email) {
+    var result = userService.getEnergyRequirements(email);
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
 //  @PutMapping(path = "/{email}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 //  @ResponseStatus(HttpStatus.OK)
 //  public ResponseEntity<UserDTO> updateUser(@PathVariable("email") String email) {
