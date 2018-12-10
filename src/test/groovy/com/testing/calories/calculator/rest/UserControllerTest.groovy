@@ -88,6 +88,16 @@ class UserControllerTest extends Specification {
         ))
     }
 
+    def "GetEnergyRequirements"() {
+        given:
+        userService.getEnergyRequirements("test@test.pl") >> 2500
+
+        expect: "controller returns energy requirements"
+        mvc.perform(MockMvcRequestBuilders.get("/user/{email}/energy_requirements", "test@test.pl"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("2500"))
+    }
+
     def "RemoveUser"() {
     }
 

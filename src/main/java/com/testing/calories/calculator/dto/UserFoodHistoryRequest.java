@@ -17,6 +17,5 @@ public class UserFoodHistoryRequest {
   @NotEmpty
   String foodName;
   @NotNull
-  @PastOrPresent
   Date dateOfConsumption;
 }

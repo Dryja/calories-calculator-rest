@@ -23,6 +23,9 @@ public class UserEntity {
 
   private String goal;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  private UserDetailsEntity userDetails;
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private Set<UserFoodHistoryEntity> userFoodHistory;
 
