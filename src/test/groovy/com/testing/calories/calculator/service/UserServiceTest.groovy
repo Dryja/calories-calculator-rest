@@ -6,7 +6,7 @@ import com.testing.calories.calculator.repository.UserDetailsRepository
 import com.testing.calories.calculator.repository.UserRepository
 import spock.lang.Specification
 
-class UserServiceTest2 extends Specification {
+class UserServiceTest extends Specification {
 
     UserService userService
 
