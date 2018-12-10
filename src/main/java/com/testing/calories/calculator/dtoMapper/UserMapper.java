@@ -1,6 +1,7 @@
 package com.testing.calories.calculator.dtoMapper;
 
 import com.testing.calories.calculator.dto.UserDTO;
+import com.testing.calories.calculator.dto.UserDetailsDTO;
 import com.testing.calories.calculator.model.UserEntity;
 
 import java.util.stream.Collectors;
@@ -15,7 +16,6 @@ public class UserMapper {
 
     return UserDTO.builder().email(entity.getEmail()).goal(entity.getGoal()).userFoodHistoryList(userHistoryFoodList).build();
   }
-
   static public UserEntity toEntity(UserDTO dto) {
     return UserEntity.builder().email(dto.getEmail()).goal(dto.getGoal()).build();
 

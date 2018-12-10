@@ -1,6 +1,7 @@
 package com.testing.calories.calculator.rest
 
 import com.testing.calories.calculator.dto.UserDTO
+import com.testing.calories.calculator.dto.UserDetailsDTO
 import com.testing.calories.calculator.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -39,6 +40,25 @@ class UserControllerTest extends Specification {
                         "}"))
     }
 
+    def "GetUserDetails"() {
+        given:
+        userService.getUserDetails("test2@test.pl") >> UserDetailsDTO.builder().email("test2@test.pl").goal("test2").weight(120).height(100).userFoodHistoryList([]).build()
+
+        expect: "controller return UserDetailsDTO"
+        mvc.perform((MockMvcRequestBuilders.get("/details/{email}", "test2@test.pl")))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                "{\n" +
+                        "  \"email\": \"test2@test.pl\",\n" +
+                        "  \"goal\": \"test2\",\n" +
+                        "  \"weight\": 120,\n" +
+                        "  \"height\": 100,\n" +
+                        "  \"about\": \"\",\n" +
+                        "  \"userFoodHistoryList\": []\n" +
+
+                        "}"
+        ))
+    }
     def "GetUserList"() {
         given:
         userService.getUserList() >> [

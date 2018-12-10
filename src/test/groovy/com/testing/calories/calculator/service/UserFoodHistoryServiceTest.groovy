@@ -20,7 +20,6 @@ class UserFoodHistoryServiceTest extends Specification {
     UserFoodHistoryRepository userFoodHistoryRepository = Mock()
 
     def "AddFoodHistory"() {
-
     }
 
     def "RemoveFoodHistory"() {

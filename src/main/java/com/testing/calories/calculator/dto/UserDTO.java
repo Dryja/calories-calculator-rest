@@ -17,5 +17,6 @@ public class UserDTO {
   @NotNull
   @NotEmpty
   private String goal;
+
   private List<UserFoodHistoryDTO> userFoodHistoryList;
 }

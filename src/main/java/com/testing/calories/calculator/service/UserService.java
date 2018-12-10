@@ -1,6 +1,8 @@
 package com.testing.calories.calculator.service;
 
 import com.testing.calories.calculator.dto.UserDTO;
+import com.testing.calories.calculator.dto.UserDetailsDTO;
+import com.testing.calories.calculator.dtoMapper.UserDetailsMapper;
 import com.testing.calories.calculator.dtoMapper.UserMapper;
 import com.testing.calories.calculator.model.UserEntity;
 import com.testing.calories.calculator.repository.UserRepository;
@@ -50,5 +52,10 @@ public class UserService {
         new EntityNotFoundException("User does not exist with such email: " + email));
 
   }
+
+  public UserDetailsDTO getUserDetails(String email) {
+    return UserDetailsMapper.toDTO(getUserEntity(email));
+  }
+
 
 }
