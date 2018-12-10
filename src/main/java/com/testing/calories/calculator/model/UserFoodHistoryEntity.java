@@ -1,9 +1,6 @@
 package com.testing.calories.calculator.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,6 +9,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"user", "food"})
 @Builder
 public class UserFoodHistoryEntity {
   @Id
