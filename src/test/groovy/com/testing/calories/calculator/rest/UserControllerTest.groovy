@@ -16,7 +16,7 @@ import spock.mock.DetachedMockFactory
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@WebMvcTest(controllers = UserController.class)
+@WebMvcTest(controllers = [UserController.class, UserDetailsController.class])
 class UserControllerTest extends Specification {
     @Autowired
     MockMvc mvc
@@ -53,7 +53,7 @@ class UserControllerTest extends Specification {
                         "  \"goal\": \"test2\",\n" +
                         "  \"weight\": 120,\n" +
                         "  \"height\": 100,\n" +
-                        "  \"about\": \"\",\n" +
+                        "  \"about\": null,\n" +
                         "  \"userFoodHistoryList\": []\n" +
 
                         "}"
