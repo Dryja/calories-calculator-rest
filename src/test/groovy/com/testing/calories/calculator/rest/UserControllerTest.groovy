@@ -1,6 +1,9 @@
 package com.testing.calories.calculator.rest
 
 import com.testing.calories.calculator.dto.UserDTO
+import com.testing.calories.calculator.dto.UserDetailsDTO
+import com.testing.calories.calculator.model.UserDetailsEntity
+import com.testing.calories.calculator.model.UserEntity
 import com.testing.calories.calculator.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -39,6 +42,33 @@ class UserControllerTest extends Specification {
                         "}"))
     }
 
+    def "GetUserDetails"() {
+        given:
+        def userDetails = UserDetailsDTO.builder()
+                .email("test2@test.pl")
+                .sex("male")
+                .height(180)
+                .weight(70)
+                .age(21)
+                .physicalActivity("very")
+                .build()
+
+        userService.getUserDetails("test2@test.pl") >> userDetails
+
+        expect: "controller return UserDetailsDTO"
+        mvc.perform((MockMvcRequestBuilders.get("/user/{email}/details", "test2@test.pl")))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                "{\n" +
+                        "  \"email\": \"test2@test.pl\",\n" +
+                        "  \"sex\": \"male\",\n" +
+                        "  \"height\": 180,\n" +
+                        "  \"weight\": 70,\n" +
+                        "  \"age\": 21,\n" +
+                        "  \"physicalActivity\": \"very\"\n" +
+                        "}"
+        ))
+    }
     def "GetUserList"() {
         given:
         userService.getUserList() >> [

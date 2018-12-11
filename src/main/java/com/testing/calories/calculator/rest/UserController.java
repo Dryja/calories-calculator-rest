@@ -2,6 +2,7 @@ package com.testing.calories.calculator.rest;
 
 
 import com.testing.calories.calculator.dto.UserDTO;
+import com.testing.calories.calculator.dto.UserDetailsDTO;
 import com.testing.calories.calculator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,11 +60,10 @@ public class UserController {
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
-//  @PutMapping(path = "/{email}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-//  @ResponseStatus(HttpStatus.OK)
-//  public ResponseEntity<UserDTO> updateUser(@PathVariable("email") String email) {
-//    var result =
-//    return new ResponseEntity<>(result, HttpStatus.OK);
-//  }
+    @GetMapping(path = "/{email}/details")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserDetailsDTO> getUserDetails(@PathVariable("email") String email) {
+        var result = userService.getUserDetails(email);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
-
