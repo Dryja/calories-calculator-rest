@@ -9,3 +9,4 @@ To run tests, generate coverage and reports run `./gradlew clean test`
 
 - Coverage is in `./build/reports/tests/test/index.html`
 - Reports (our test documentation) is in `./build/spock-reports/index.html`
+- JMH benchmarks results - `./build/reports/jmh/index.html` generate with `./gradlew jmh jmhReport'

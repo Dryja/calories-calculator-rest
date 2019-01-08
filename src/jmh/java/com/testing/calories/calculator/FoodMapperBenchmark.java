@@ -21,14 +21,14 @@ public class FoodMapperBenchmark {
   @Benchmark
   @BenchmarkMode(Mode.All)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
-  public void measureAllToDTO() {
-    FoodMapper.toDTO(food);
+  public FoodDTO measureAllToDTO() {
+    return FoodMapper.toDTO(food);
   }
 
   @Benchmark
   @BenchmarkMode(Mode.All)
   @OutputTimeUnit(TimeUnit.MILLISECONDS)
-  public void measureAllToEntity() {
-    FoodMapper.toEntity(foodDTO);
+  public FoodEntity measureAllToEntity() {
+    return FoodMapper.toEntity(foodDTO);
   }
 }

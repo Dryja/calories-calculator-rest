@@ -180,4 +180,15 @@ public class CalculatorBenchmark {
     chooseEnergyOption("gain", 3000.0);
   }
 
+
+  @Benchmark
+  @BenchmarkMode(Mode.All)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
+  public Integer macroMeasureAll() {
+    var bmr = calculateBMR("male", 100, 50, 30);
+    var energy = calculateEnergyRequirements(bmr, "sedentary");
+    return chooseEnergyOption("gain", energy);
+
+  }
+
 }
