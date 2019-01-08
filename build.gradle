@@ -5,21 +5,44 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "me.champeau.gradle:jmh-gradle-plugin:0.4.7"
     }
 }
 
+plugins {
+    id "io.morethan.jmhreport" version "0.9.0"
+}
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "me.champeau.gradle.jmh"
 
 group = 'com.testing.calories'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 10
+
+jmhReport {
+    jmhResultPath = project.file('build/reports/jmh/results.json')
+    jmhReportOutput = project.file('build/reports/jmh')
+}
+jmh {
+    iterations = 2
+    warmupIterations = 1
+    fork = 1
+    timeUnit = 'ms'
+    zip64 = true
+    threads = 4
+    resultFormat = 'JSON'
+    timeOnIteration = '250ms'
+}
 
 repositories {
     mavenCentral()
@@ -57,4 +80,6 @@ dependencies {
     // swagger
     compile('io.springfox:springfox-swagger2:2.9.2')
     compile('io.springfox:springfox-swagger-ui:2.9.2')
+
+    jmhCompileOnly('org.projectlombok:lombok')
 }

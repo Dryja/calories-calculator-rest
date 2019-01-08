@@ -8,6 +8,7 @@ import com.testing.calories.calculator.model.UserDetailsEntity;
 import com.testing.calories.calculator.model.UserEntity;
 import com.testing.calories.calculator.repository.UserDetailsRepository;
 import com.testing.calories.calculator.repository.UserRepository;
+import com.testing.calories.calculator.util.Calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,21 +60,7 @@ public class UserService {
         var goal = user.getGoal();
         var energyRequirements = calculateEnergyRequirements(user);
 
-        switch (goal) {
-            case "reduce": {
-                energyRequirements *= 0.85;
-                break;
-            }
-            case "gain": {
-                energyRequirements *= 1.15;
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-
-        return (int) Math.round(energyRequirements);
+        return Calculator.chooseEnergyOption(goal, energyRequirements);
     }
 
     private UserEntity getUserEntity(String email) {
@@ -98,10 +85,7 @@ public class UserService {
         var weight = userDetails.getWeight();
         var age = userDetails.getAge();
 
-        var bmr = 10 * weight + 6.25 * height - 5 * age;
-        bmr = sex.equals("male") ? bmr + 5 : bmr - 161;
-
-        return bmr;
+        return Calculator.calculateBMR(sex, height, weight, age);
     }
 
     private Double calculateEnergyRequirements(UserEntity user) {
@@ -109,32 +93,7 @@ public class UserService {
         var physicalActivity = userDetails.getPhysicalActivity();
         var bmr = calculateBMR(user);
 
-        double energyRequirements;
-
-        switch (physicalActivity) {
-            case "sedentary": {
-                energyRequirements = 1.2 * bmr;
-                break;
-            }
-            case "lightly": {
-                energyRequirements = 1.375 * bmr;
-                break;
-            }
-            case "moderately": {
-                energyRequirements = 1.55 * bmr;
-                break;
-            }
-            case "very": {
-                energyRequirements = 1.725 * bmr;
-                break;
-            }
-            default: {
-                energyRequirements = 1.9 * bmr;
-                break;
-            }
-        }
-
-        return energyRequirements;
+        return Calculator.calculateEnergyRequirements(bmr, physicalActivity);
     }
 
 }
