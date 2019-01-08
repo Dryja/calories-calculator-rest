@@ -49,21 +49,21 @@ public class CalculatorBenchmark {
 
   @Benchmark
   @BenchmarkMode(Mode.AverageTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAvgTimeThroughputCalculateEnergyRequirements() {
     calculateEnergyRequirements(1000.0, "sedentary");
   }
 
   @Benchmark
   @BenchmarkMode(Mode.AverageTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAvgTimeCalculateBMR() {
     calculateBMR("male", 100, 50, 30);
   }
 
   @Benchmark
   @BenchmarkMode(Mode.AverageTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAvgTimeChooseEnergyOption() {
     chooseEnergyOption("gain", 3000.0);
   }
@@ -81,21 +81,21 @@ public class CalculatorBenchmark {
    */
   @Benchmark
   @BenchmarkMode(Mode.SampleTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSamplesThroughputCalculateEnergyRequirements() {
     calculateEnergyRequirements(1000.0, "sedentary");
   }
 
   @Benchmark
   @BenchmarkMode(Mode.SampleTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSamplesCalculateBMR() {
     calculateBMR("male", 100, 50, 30);
   }
 
   @Benchmark
   @BenchmarkMode(Mode.SampleTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSamplesChooseEnergyOption() {
     chooseEnergyOption("gain", 3000.0);
   }
@@ -111,21 +111,21 @@ public class CalculatorBenchmark {
    */
   @Benchmark
   @BenchmarkMode(Mode.SingleShotTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSingleShotThroughputCalculateEnergyRequirements() {
     calculateEnergyRequirements(1000.0, "sedentary");
   }
 
   @Benchmark
   @BenchmarkMode(Mode.SingleShotTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSingleShotCalculateBMR() {
     calculateBMR("male", 100, 50, 30);
   }
 
   @Benchmark
   @BenchmarkMode(Mode.SingleShotTime)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureSingleShotChooseEnergyOption() {
     chooseEnergyOption("gain", 3000.0);
   }
@@ -136,21 +136,21 @@ public class CalculatorBenchmark {
    */
   @Benchmark
   @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime, Mode.SingleShotTime})
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureMultipleThroughputCalculateEnergyRequirements() {
     calculateEnergyRequirements(1000.0, "sedentary");
   }
 
   @Benchmark
   @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime, Mode.SingleShotTime})
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureMultipleCalculateBMR() {
     calculateBMR("male", 100, 50, 30);
   }
 
   @Benchmark
   @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime, Mode.SingleShotTime})
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureMultipleChooseEnergyOption() {
     chooseEnergyOption("gain", 3000.0);
   }
@@ -161,21 +161,21 @@ public class CalculatorBenchmark {
 
   @Benchmark
   @BenchmarkMode(Mode.All)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAllThroughputCalculateEnergyRequirements() {
     calculateEnergyRequirements(1000.0, "sedentary");
   }
 
   @Benchmark
   @BenchmarkMode(Mode.All)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAllCalculateBMR() {
     calculateBMR("male", 100, 50, 30);
   }
 
   @Benchmark
   @BenchmarkMode(Mode.All)
-  @OutputTimeUnit(TimeUnit.MICROSECONDS)
+  @OutputTimeUnit(TimeUnit.MILLISECONDS)
   public void measureAllChooseEnergyOption() {
     chooseEnergyOption("gain", 3000.0);
   }
